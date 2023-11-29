@@ -1,0 +1,82 @@
+
+
+/* 
+    Fonts:
+        font-family: 'Bungee Shade', sans-serif;
+        font-family: 'Comfortaa', sans-serif;
+*/
+
+
+.wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/*********************************************************************/
+/* Header */
+/*********************************************************************/
+
+header {
+    font-family: 'Bungee Shade', sans-serif;
+    font-size: 2rem;
+    text-align: center;
+    margin-top: 1.5em;
+}
+
+header .subheading {
+    font-size: 1.25rem;
+}
+
+/*********************************************************************/
+/* Form */
+/*********************************************************************/
+
+body {
+    font-family: 'Comfortaa', sans-serif;
+    background-color: rgba(255, 206, 29, 0.244);
+}
+
+form {
+    margin-top: 2em;
+    text-align: center;
+}
+
+form input {
+    width: 3rem;
+}
+
+/*********************************************************************/
+/* Main */
+/*********************************************************************/
+
+main {
+    margin-top: 3.5em;
+}
+
+.events-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-auto-columns: 240px;
+    gap: 0 2em;
+ 
+}
+
+@media (max-width: 600px) {
+    .events-grid {
+        grid-template-columns: repeat(3, auto);
+    }
+}
+
+.event > a {
+    color: black;
+    font-weight: bold;
+}
+
+.special-event > a {
+    font-size: 1.5rem;
+}
+
+.special-event {
+    grid-column: span 2;
+}
+

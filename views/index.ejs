@@ -1,0 +1,65 @@
+
+
+<body>
+
+<div class="wrapper">
+	<%- include("partials/header.ejs") %>
+
+	<!-- Show form if this is the first time opening the site.  -->
+	<% if (!locals.events) { %>
+		<form action="/submit" method="post">
+			<label for="month">Month: </label>
+			<select id="month" name="month">
+				<option value="1">January</option>
+				<option value="2">February</option>
+				<option value="3">March</option>
+				<option value="4">April</option>
+				<option value="5">May</option>
+				<option value="6">June</option>
+				<option value="7">July</option>
+				<option value="8">August</option>
+				<option value="9">September</option>
+				<option value="10">October</option>
+				<option value="11">November</option>
+				<option value="12">December</option>
+			</select>
+
+			<label for="day">Day: </label>
+			<input type="number" name="day" id="day" min="1" max="31" value="1">
+
+			<input type="submit">
+		</form>
+
+	<!-- Show events -->
+	<% } else { %>
+
+		<main>
+			Events: 
+
+			<div class="events-grid">
+				<!-- Get all of the events. -->
+				<% for (var i = 0; i < events.length; i++) { %>
+					<!-- Special event -->
+					<% if (i == 7) { %>
+						<div class="event event<%=i%> special-event">
+							<a href=<%=events[i].link%>><p><%=events[i].title%></p></a>
+							<p><%=events[i].year%></p>
+							<p><%=events[i].description%></p>
+						</div>
+					
+					<!-- Normal event -->
+					<% } else { %>
+						<div class="event event<%=i%>">
+							<a href=<%=events[i].link%>><p><%=events[i].title%></p></a>
+							<p><%=events[i].year%></p>
+							<p><%=events[i].description%></p>
+						</div>
+					<% } %>
+				<% } %>
+				<!-- End of getting all events -->
+			</div>
+		</main>
+
+	<% } %>
+</div>
+</body>
