@@ -49,7 +49,7 @@ app.post('/submit', async (req, res) => {
 
 /* 
     Create Event objects out of the events received from the API.
-    Makes it easier to later. 
+    Makes it easier to parse later. 
 */
 function get_random_events(events) {
     var event_length = Object.keys(events).length;
@@ -69,8 +69,6 @@ function get_random_events(events) {
             wiki = Object.values(wiki[0]);
             var title = wiki[0];
             var link = wiki[1]
-            console.log(link);
-
             var e = new Event(events[i].year, events[i].description, title, link); 
         }
 
