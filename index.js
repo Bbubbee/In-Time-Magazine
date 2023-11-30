@@ -6,7 +6,6 @@ import axios from "axios";
 const port = 3000; 
 const app = express(); 
 const API_URL = "https://byabbe.se/on-this-day/"
-//https://byabbe.se/on-this-day/4/4/events.json
 
 var new_events = [];
 
@@ -37,7 +36,7 @@ app.post('/submit', async (req, res) => {
 
         get_random_events(response.data.events); 
 
-        res.render("index.ejs", { events: new_events } );
+        res.render("index.ejs", { events: new_events, date: [req.body.day, req.body.month] } );
     } catch (error) {
         console.log("error getting events");
         events = [];
@@ -74,17 +73,9 @@ function get_random_events(events) {
 
         new_events.push(e);
     }
-
-    for (var i = 0; i < new_events.length; i++) { 
-        console.log(new_events[i].link);
-    }
-
-    // Validate event. Check if has title, wikipedia link, description and year. 
-    // Check if doesnt exist in current list of events. 
-
 }
 
-// Create a new event class.
+
 class Event {
     constructor(year = "?", description="Unknown description", title = "Unknown title", link = "#") {
         this.year = year; 
