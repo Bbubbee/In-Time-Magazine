@@ -4,12 +4,17 @@
     Fonts:
         font-family: 'Bungee Shade', sans-serif;
         font-family: 'Comfortaa', sans-serif;
+        
+        font-family: 'Berkshire Swash', serif;
+        font-family: 'IM Fell Double Pica', serif;
+        font-family: 'IM Fell English SC', serif;
 */
 
 
 .wrapper {
     max-width: 1200px;
     margin: 0 auto;
+    /* background-image: "./images/old-paper.jpg"; */
 }
 
 /*********************************************************************/
@@ -18,13 +23,14 @@
 
 header {
     font-family: 'Bungee Shade', sans-serif;
-    font-size: 2rem;
+    font-size: 3rem;
     text-align: center;
     margin-top: 1.5em;
 }
 
 header .subheading {
-    font-size: 1.25rem;
+    font-family: 'IM Fell English SC', serif;
+    font-size: 1.75rem;
 }
 
 /*********************************************************************/
@@ -98,10 +104,22 @@ main {
 }
 
 .special-event > a {
-    font-size: 1.5rem;
+    font-family: 'Berkshire Swash', serif;
+    font-size: 2rem;
 }
 
 .special-event {
-    grid-column: span 2;
+    /* grid-column: span 2; */
+    grid-row: span 2;
 }
+
+.special-event > img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+/* 
+.long-event {
+    grid-column: span 2;
+} */
 

@@ -68,7 +68,11 @@ function get_random_events(events) {
             wiki = Object.values(wiki[0]);
             var title = wiki[0];
             var link = wiki[1]
-            var e = new Event(events[i].year, events[i].description, title, link); 
+
+            // This event has the possibility of being a special event. 
+            var is_special = Math.random() < 0.03
+
+            var e = new Event(events[i].year, events[i].description, title, link, is_special); 
         }
 
         new_events.push(e);
@@ -77,10 +81,18 @@ function get_random_events(events) {
 
 
 class Event {
-    constructor(year = "?", description="Unknown description", title = "Unknown title", link = "#") {
+    constructor(year = "?", description="Unknown description", title = "Unknown title", link = "#", is_special = false) {
         this.year = year; 
         this.title = title; 
         this.description = description; 
         this.link = link; 
+        this.is_special = is_special; 
+
+        // if (this.description.length > 200) {
+        //     this.long_description = true; 
+        // }
+        // else{
+        //     this.long_description = false; 
+        // }
     }
 }
