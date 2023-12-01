@@ -74,19 +74,22 @@ function get_random_events(events) {
 
             var e = new Event(events[i].year, events[i].description, title, link, is_special); 
         }
-
         new_events.push(e);
+
+
+        // Randomly interject advertisements here
     }
 }
 
 
 class Event {
-    constructor(year = "?", description="Unknown description", title = "Unknown title", link = "#", is_special = false) {
+    constructor(year = "?", description="Unknown description", title = "Unknown title", link = "#", is_special = false, is_ad=false) {
         this.year = year; 
         this.title = title; 
         this.description = description; 
         this.link = link; 
         this.is_special = is_special; 
+        this.is_ad = is_ad; 
 
         // if (this.description.length > 200) {
         //     this.long_description = true; 
