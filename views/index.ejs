@@ -47,16 +47,32 @@
 					<!-- Make temp ad -->
 					<% if (i == 1) { %>
 					<div class="event ad">
-						<div class="ad-logo">
-							<p class="">Cosmi Coffee!</p>
-							<img src="./images/ads/cosmi-coffee.png" alt="cosmi coffee">
+						<div class="outer-border">
+							<div class="ad-logo">
+								<p class="">Cosmi Coffee!</p>
+								<img src="./images/ads/cosmi-coffee.png" alt="cosmi coffee">
+							</div>
+							<p>Sip the finest coffee of the cosmos!</p>
 						</div>
-						
-					<p>blah bald ajsdklasj kldasjkld jakls blah bald ajsdklasj kldasjkld jakls blah bald ajsdklasj kldasjkld jakls </p>
-
 					</div>
-					
 					<% } %>
+
+					<!-- Show important births -->
+					<% if ((i == 7) && (locals.births)) { %>
+						<div class="event births-container">
+							<h2>Important births:</h2>
+							<% console.log(births) %>
+							<!-- Iterate thought all births -->
+							<% for (var x = 0; x < births.length; x++) { %>
+								<p>
+									<%= births[x].name %>
+								</p>
+							<% } %>
+						</div>
+					<% } %>
+
+					<!-- Show important deaths -->
+
 
 					<!-- Special event -->
 					<% if (events[i].is_special) { %>
@@ -77,8 +93,7 @@
 							<p><%=events[i].description%></p>
 						</div>
 					<% } %>	
-				<% } %>
-				<!-- End of getting all events -->
+				<% } %> <!-- End of getting all events -->
 			</div>
 		</main>
 

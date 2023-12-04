@@ -8,6 +8,7 @@ const app = express();
 const API_URL = "https://byabbe.se/on-this-day/"
 
 var new_events = [];
+var births = [];
 
 /* Middleware */
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -24,22 +25,34 @@ app.get('/', (req, res) => {
 });
 
 
-// Get a bunch of events from the given date. 
+/* 
+    Get information from the given date and post it on the screen.
+    Information includes events, births, and deaths. 
+*/
+
 app.post('/submit', async (req, res) => {
-    const url = API_URL+req.body.month+"/"+req.body.day+"/events.json";
-
     try {
+        /* Get events */
+        const url = API_URL+req.body.month+"/"+req.body.day+"/events.json";
         const response = await axios.get(url);
+        new_events = [];  // Empty array of events before adding new ones.
+        get_events(response.data.events); 
 
-        // Empty array of events before adding new ones. 
-        new_events = [];
+        try {
+            /* Get births */
+            const births_url = API_URL+req.body.month+"/"+req.body.day+"/births.json";
+            const births_response = await axios.get(births_url);
+            births = []; 
+            get_births(births_response.data.births);
+        } catch (error) {
+            births = [];
+            console.log("error getting births");
+        }
 
-        get_random_events(response.data.events); 
-
-        res.render("index.ejs", { events: new_events, date: [req.body.day, req.body.month] } );
+        res.render("index.ejs", { events: new_events, date: [req.body.day, req.body.month], births: births} );
     } catch (error) {
         console.log("error getting events");
-        events = [];
+        new_events = [];
         res.redirect('/'); 
     }
 });
@@ -50,7 +63,7 @@ app.post('/submit', async (req, res) => {
     Create Event objects out of the events received from the API.
     Makes it easier to parse later. 
 */
-function get_random_events(events) {
+function get_events(events) {
     var event_length = Object.keys(events).length;
 
     for (var i = 0; i < event_length; i++) {
@@ -71,16 +84,11 @@ function get_random_events(events) {
 
             // This event has the possibility of being a special event. 
             var is_special = Math.random() < 0.03
-
             var e = new Event(events[i].year, events[i].description, title, link, is_special); 
         }
         new_events.push(e);
-
-
-        // Randomly interject advertisements here
     }
 }
-
 
 class Event {
     constructor(year = "?", description="Unknown description", title = "Unknown title", link = "#", is_special = false, is_ad=false) {
@@ -88,14 +96,41 @@ class Event {
         this.title = title; 
         this.description = description; 
         this.link = link; 
-        this.is_special = is_special; 
-        this.is_ad = is_ad; 
-
-        // if (this.description.length > 200) {
-        //     this.long_description = true; 
-        // }
-        // else{
-        //     this.long_description = false; 
-        // }
+        this.is_special = false;  // Change later
+        this.is_ad = is_ad;
     }
 }
+
+
+/* 
+    Get births and store them in an array. 
+*/
+function get_births(births) {
+    var births_length = Object.keys(births).length;
+    // Create birth instances. 
+    for (var i = 0; i < births_length; i++) {
+        var link;
+        var wiki = births[i].wikipedia; 
+        if (Object.keys(wiki).length <= 0) {
+            console.log("no wiki for this birth");
+            link = "#"
+        }
+        else {
+            var w = Object.values(wiki[0]);
+            link = w[1];
+        }
+
+        var b = new Birth(births[i].year, births[i].description, link);
+        births.push(b); 
+    }
+}
+
+class Birth {
+    constructor(year = "?", name="Unknown name", link="#") {
+        this.year = year;
+        this.name = name;
+        this.link = link;
+    }
+}
+
+
