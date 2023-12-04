@@ -103,14 +103,20 @@ class Event {
 
 
 /* 
-    Get births and store them in an array. 
+    Get births and store them in an array. Only generates a limited amount of births. 
 */
-function get_births(births) {
-    var births_length = Object.keys(births).length;
+function get_births(births_object) {
+    var births_length = Object.keys(births_object).length;
+
+    // Randomly generare 30 births. Ensure it follows chronological order. 
+    var random_list = generate_random_list(20, births_length); 
+
     // Create birth instances. 
-    for (var i = 0; i < births_length; i++) {
+    for (var i = 0; i < random_list.length; i++) {
+        var index = random_list[i]; 
+
         var link;
-        var wiki = births[i].wikipedia; 
+        var wiki = births_object[index].wikipedia; 
         if (Object.keys(wiki).length <= 0) {
             console.log("no wiki for this birth");
             link = "#"
@@ -120,7 +126,8 @@ function get_births(births) {
             link = w[1];
         }
 
-        var b = new Birth(births[i].year, births[i].description, link);
+        // Add birth to array. 
+        var b = new Birth(births_object[index].year, births_object[index].description, link);
         births.push(b); 
     }
 }
@@ -131,6 +138,29 @@ class Birth {
         this.name = name;
         this.link = link;
     }
+}
+
+
+/* 
+    Generates a list of random numbers. Orders the random numbers from to lowest to highest. 
+    @amount = the amount of random numbers to generate. 
+    @max    = the highest number that can be generated.
+*/
+function generate_random_list(amount, max) {
+    var random_list = [] 
+
+    // Generates the amount of random numbers needed. 
+    for (var i = 0; i < amount; i++) {
+        do {
+            var r = Math.floor(Math.random() * max);
+            random_list.push(r); 
+        } while (!random_list.includes(r));
+    }
+
+    // Order the list from lowest to highest. 
+    random_list = random_list.sort(function(a, b) { return a - b; });
+
+    return random_list; 
 }
 
 

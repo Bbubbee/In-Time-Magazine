@@ -61,11 +61,16 @@
 					<% if ((i == 7) && (locals.births)) { %>
 						<div class="event births-container">
 							<h2>Important births:</h2>
-							<% console.log(births) %>
+							
 							<!-- Iterate thought all births -->
 							<% for (var x = 0; x < births.length; x++) { %>
 								<p>
-									<%= births[x].name %>
+									<%= births[x].year %>
+								</p>
+								<p>
+									<a href=<%=births.link%>>
+										<%= births[x].name %>
+									</a>
 								</p>
 							<% } %>
 						</div>
