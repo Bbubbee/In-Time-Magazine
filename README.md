@@ -124,6 +124,9 @@ Download the project and open it in Visual Studio Code.
 <!-- USAGE EXAMPLES -->
 ## Usage
 
+Choose the month and day here
+<img src="./public/images/samples/2.png" alt="sample images">
+
 Showing events for January 1st (1/1) 
 <img src="./public/images/samples/1.png" alt="sample images">
 
