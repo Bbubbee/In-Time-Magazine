@@ -80,7 +80,7 @@ This website shows significant events that have occured on a given day over the 
 ### Built With
 
 
-* [![JQuery][JQuery.com]][JQuery-url]
+![JQuery][JQuery.com]][JQuery-url]
 
 
 
@@ -156,6 +156,7 @@ Project Link: [https://github.com/Bbubbee/In-Time-Magazine](https://github.com/B
 ## Acknowledgments
 
 * API - [Wikipedia, On this Day](https://byabbe.se/on-this-day/#/default/get__month___day__events_json)
+* [README template](https://github.com/othneildrew/Best-README-Template)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
