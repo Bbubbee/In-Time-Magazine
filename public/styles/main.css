@@ -35,8 +35,6 @@ header {
     padding: 0.5em;
 }
 
-
-
 .inner-border {
     border-style: dashed;
     padding: 1em;
@@ -57,12 +55,17 @@ body {
 }
 
 form {
-    margin-top: 2em;
+    margin-top: 3.5em;
     text-align: center;
 }
 
 form input {
     width: 3rem;
+}
+
+.about {
+    padding: 5em 0; 
+    margin-top: 2em;
 }
 
 
@@ -87,10 +90,20 @@ main {
     border-style: solid;
     border-width: 1px 0;
     padding: 10px 0; 
+
+    font-family: 'IM Fell English SC', serif;
+    font-size: 1.4rem;
 }
 
 .info-bar .date {
-    font-weight: bold;
+    /* font-weight: bold; */
+    font-size: 2rem;
+    font-family: 'Bungee Shade', sans-serif;
+}
+
+.info-bar .date .sub {
+    font-size: 1rem;
+    font-family: 'Courier New', Courier, monospace;
 }
 
 
@@ -111,6 +124,11 @@ main {
 @media (max-width: 600px) {
     .events-grid {
         grid-template-columns: repeat(3, auto);
+    }
+
+    .ad {
+        grid-column: span 1;
+        background-color: red;
     }
 }
 
@@ -155,13 +173,13 @@ main {
     /* grid-row: span 3; */
 
     display: block;
-    border: 2px solid
+    border: 1px solid
 }
 
 .ad > .inner-border {
     border: 1px dashed;
     height: 100%;
-    padding: 1.5em;
+    padding: 2.5em 1.5em;
 }
 
 .ad .ad-logo {
@@ -190,12 +208,14 @@ main {
 /************ Births **************/
 
 .births-container {
-    grid-row: span 4;
+    grid-row: span 3;
     grid-column: span 2;
 }
 
 .births-container > h2 {
-    margin-bottom: 1em;
+    margin-bottom: 0.5em;
+    font-family: 'Berkshire Swash', serif;
+    font-size: 3rem;
 }
 
 .birth {
@@ -222,12 +242,14 @@ main {
 /************ Births **************/
 
 .deaths-container {
-    grid-row: span 4;
+    grid-row: span 3;
     grid-column: span 2;
 }
 
 .deaths-container > h2 {
-    margin-bottom: 1em;
+    margin-bottom: 0.5em;
+    font-family: 'Berkshire Swash', serif;
+    font-size: 3rem;
 }
 
 .death {

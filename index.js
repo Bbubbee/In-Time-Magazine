@@ -31,16 +31,29 @@ app.get('/', (req, res) => {
     Information includes events, births, and deaths. 
 */
 app.post('/submit', async (req, res) => {
+    var month = req.body.month; 
+    var day = req.body.day; 
+    
+    // Rudimentary error check. 
+    if ( (month == 4) || (month == 6) || (month == 9) || (month == 11) ) {
+        if (day > 30) { day = 30; }
+    }
+    if (month == 2) { 
+        if (day > 28) { day = 28; }
+    }
+
+
+
     try {
         /* Get events */
-        const url = API_URL+req.body.month+"/"+req.body.day+"/events.json";
+        const url = API_URL+month+"/"+day+"/events.json";
         const response = await axios.get(url);
         new_events = [];  // Empty array of events before adding new ones.
         get_events(response.data.events); 
 
+        /* Get births */
         try {
-            /* Get births */
-            const births_url = API_URL+req.body.month+"/"+req.body.day+"/births.json";
+            const births_url = API_URL+month+"/"+day+"/births.json";
             const births_response = await axios.get(births_url);
             births = []; 
             get_births(births_response.data.births);
@@ -49,9 +62,10 @@ app.post('/submit', async (req, res) => {
             console.log("error getting births");
         }
 
+        /* Get Deaths */
         try {
             /* Get Deaths */
-            const deaths_url = API_URL+req.body.month+"/"+req.body.day+"/deaths.json";
+            const deaths_url = API_URL+month+"/"+day+"/deaths.json";
             const deaths_response = await axios.get(deaths_url);
             deaths = []; 
             get_deaths(deaths_response.data.deaths);
@@ -60,7 +74,7 @@ app.post('/submit', async (req, res) => {
             console.log("error getting deaths");
         }
 
-        res.render("index.ejs", { events: new_events, date: [req.body.day, req.body.month], births: births, deaths: deaths} );
+        res.render("index.ejs", { events: new_events, date: [day, month], births: births, deaths: deaths} );
     } catch (error) {
         console.log("error getting events");
         new_events = [];
@@ -77,16 +91,21 @@ app.post('/submit', async (req, res) => {
 function get_events(events) {
     var event_length = Object.keys(events).length;
 
-    for (var i = 0; i < event_length; i++) {
-        // Create new event. 
+    // var random_list = generate_random_list(15, births_length); 
+
+    // Cut down events, make them random, order them from earliest to latest. 
+    var random_list = generate_random_list(30, event_length); 
+
+    for (var i = 0; i < random_list.length; i++) {
+        var index = i;
 
         // Get wiki object. Used to derive title and link. 
-        var wiki = events[i].wikipedia; 
+        var wiki = events[index].wikipedia; 
 
         // Check if wiki exists. 
         if (Object.keys(wiki).length <= 0) {
             // If it doesn't exist, create an event without the title and link. 
-            var e = new Event(events[i].year, events[i].description); 
+            var e = new Event(events[index].year, events[index].description); 
         }
         else {
             wiki = Object.values(wiki[0]);
@@ -95,7 +114,7 @@ function get_events(events) {
 
             // This event has the possibility of being a special event. 
             var is_special = Math.random() < 0.03
-            var e = new Event(events[i].year, events[i].description, title, link, is_special); 
+            var e = new Event(events[index].year, events[index].description, title, link, is_special); 
         }
         new_events.push(e);
     }
@@ -183,7 +202,7 @@ function get_deaths(deaths_object) {
     var deaths_length = Object.keys(deaths_object).length;
 
     // Randomly generare deaths. Ensure it follows chronological order. 
-    var random_list = generate_random_list(20, deaths_length);
+    var random_list = generate_random_list(15, deaths_length);
 
     // Create death instances. 
     for (var i = 0; i < random_list.length; i++) {

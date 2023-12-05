@@ -28,6 +28,14 @@
 			<input type="number" name="day" id="day" min="1" max="31" value="1">
 
 			<input type="submit" style="width: 5em;">
+
+			<div class="about">
+				<h2>About: </h2>
+				<p class="description">
+					You are an all-powerful entity before the inception of the universe. Pick a date and see what will happen in time.
+				</p>
+			</div>
+			
 		</form>
 
 	<!-- Show events -->
@@ -36,8 +44,13 @@
 			<!-- Information bar -->
 			<div class="info-bar">
 				<div class="est">Est. 0000</div>
-				<div class="date"> <%=date[0]%>/<%=date[1]%></div>
-				<div class="price">2cents</div>
+				<div class="date" style="text-align: center;"> <a href="/"> <%=date[1]%>/<%=date[0]%> </a> <br>
+					<div class="sub">
+						press date to change
+					</div>
+				
+				</div>
+				<div class="price">2 cents</div>
 			</div>
 
 			<div class="events-grid">
@@ -49,9 +62,10 @@
 					<div class="event ad">
 						<div class="inner-border">
 							<div class="ad-logo">
-								<p class="">Cosmi Coffee!</p>
+								<p class="">Cosmi-Coffee!</p>
 								<img src="./images/ads/cosmi-coffee.png" alt="cosmi coffee">
 							</div>
+							<br>
 							<p class="info">Sip the finest coffee of the cosmos!</p>
 						</div>
 					</div>
@@ -60,7 +74,7 @@
 					<!-- Show important births -->
 					<% if ((i == 7) && (locals.births)) { %>
 						<div class="event births-container">
-							<h2>Important births:</h2>
+							<h2>Important births</h2>
 							
 							<% for (var x = 0; x < births.length; x++) { %>
 								<div class="birth">
@@ -77,9 +91,9 @@
 
 				
 					<!-- Show important deaths -->
-					<% if ((i == 22) && (locals.deaths)) { %>
+					<% if ((i == 24) && (locals.deaths)) { %>
 						<div class="event deaths-container">
-							<h2>Important Deaths:</h2>
+							<h2>Important Deaths</h2>
 							
 							<% for (var x = 0; x < deaths.length; x++) { %>
 								<div class="death">
@@ -102,8 +116,6 @@
 							<p><%=events[i].year%></p>
 							<p><%=events[i].description%></p>
 							<img src="/images/exc-mark-2.png" alt="exclamation mark">
-							<!-- <img src="./images/exc-mark-2.png" alt="exclamation mark" style="float: left;"> -->
-
 						</div>
 					
 					<!-- Normal event -->
@@ -119,9 +131,13 @@
 		</main>
 
 	<% } %>
-</div>
+
+<%- include("partials/footer.ejs") %>
+
+</div> <!-- End of wrapper-->
 
 <script>
 	console.log("THis is it!")
 </script>
 </body>
+
