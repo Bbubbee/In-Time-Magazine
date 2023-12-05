@@ -121,7 +121,9 @@ Download the project and open it in Visual Studio Code.
 
 <!-- USAGE EXAMPLES -->
 ## Usage
-<img src="./public/images/samples/logo.png" alt="sample images">
+
+
+<img src="./public/images/samples/1.png" alt="sample images">
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
