@@ -124,7 +124,7 @@ Download the project and open it in Visual Studio Code.
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-
+Showing events for January 1st (1/1) 
 <img src="./public/images/samples/1.png" alt="sample images">
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
