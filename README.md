@@ -81,7 +81,9 @@ This website shows significant events that have occured on a given day over the 
 
 
 ![JQuery][JQuery.com]
-![CSS][CSS.com]
+![JavaScript Badge](https://img.shields.io/badge/JAVASCRIPT-yellow?style=for-the-badge&logo=javascript&logoColor=white)
+![HTML Badge](https://img.shields.io/badge/HTML-orange?style=for-the-badge&logo=html5&logoColor=white)
+![CSS Badge](https://img.shields.io/badge/css-blue?style=for-the-badge&logo=css3&logoColor=white)
 
 
 
