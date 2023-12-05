@@ -180,9 +180,6 @@ function generate_random_list(amount, max) {
     Copy and pasted births processes because lazy.  
 */
 function get_deaths(deaths_object) {
-    console.log("trying to get deaths") 
-    // console.log(deaths_object) 
-
     var deaths_length = Object.keys(deaths_object).length;
 
     // Randomly generare deaths. Ensure it follows chronological order. 
@@ -214,8 +211,6 @@ class Death {
         this.year = year;
         this.name = name;
         this.link = link;
-
-        console.log(this.year, this.name, this.link);
     }
 }
 
