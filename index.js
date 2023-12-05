@@ -9,6 +9,7 @@ const API_URL = "https://byabbe.se/on-this-day/"
 
 var new_events = [];
 var births = [];
+var deaths = []; 
 
 /* Middleware */
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -29,7 +30,6 @@ app.get('/', (req, res) => {
     Get information from the given date and post it on the screen.
     Information includes events, births, and deaths. 
 */
-
 app.post('/submit', async (req, res) => {
     try {
         /* Get events */
@@ -49,7 +49,18 @@ app.post('/submit', async (req, res) => {
             console.log("error getting births");
         }
 
-        res.render("index.ejs", { events: new_events, date: [req.body.day, req.body.month], births: births} );
+        try {
+            /* Get Deaths */
+            const deaths_url = API_URL+req.body.month+"/"+req.body.day+"/deaths.json";
+            const deaths_response = await axios.get(deaths_url);
+            deaths = []; 
+            get_deaths(deaths_response.data.deaths);
+        } catch (error) {
+            deaths = [];
+            console.log("error getting deaths");
+        }
+
+        res.render("index.ejs", { events: new_events, date: [req.body.day, req.body.month], births: births, deaths: deaths} );
     } catch (error) {
         console.log("error getting events");
         new_events = [];
@@ -109,7 +120,7 @@ function get_births(births_object) {
     var births_length = Object.keys(births_object).length;
 
     // Randomly generare 30 births. Ensure it follows chronological order. 
-    var random_list = generate_random_list(20, births_length); 
+    var random_list = generate_random_list(15, births_length); 
 
     // Create birth instances. 
     for (var i = 0; i < random_list.length; i++) {
@@ -163,4 +174,48 @@ function generate_random_list(amount, max) {
     return random_list; 
 }
 
+
+/* 
+    Get deaths and store them in an array. Only generates a limited amount of deaths.
+    Copy and pasted births processes because lazy.  
+*/
+function get_deaths(deaths_object) {
+    console.log("trying to get deaths") 
+    // console.log(deaths_object) 
+
+    var deaths_length = Object.keys(deaths_object).length;
+
+    // Randomly generare deaths. Ensure it follows chronological order. 
+    var random_list = generate_random_list(20, deaths_length);
+
+    // Create death instances. 
+    for (var i = 0; i < random_list.length; i++) {
+        var index = random_list[i]; 
+
+        var link;
+        var wiki = deaths_object[index].wikipedia; 
+        if (Object.keys(wiki).length <= 0) {
+            console.log("no wiki for this birth");
+            link = "#"
+        }
+        else {
+            var w = Object.values(wiki[0]);
+            link = w[1];
+        }
+
+        // Add birth to array. 
+        var d = new Death(deaths_object[index].year, deaths_object[index].description, link);
+        deaths.push(d); 
+    }
+}
+
+class Death {
+    constructor(year = "?", name="Unknown name", link="#") {
+        this.year = year;
+        this.name = name;
+        this.link = link;
+
+        console.log(this.year, this.name, this.link);
+    }
+}
 

@@ -98,6 +98,9 @@ main {
 /* Events */
 /*********************************************************************/
 
+
+/************ Basic Events **************/
+
 .events-grid {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
@@ -144,7 +147,8 @@ main {
     margin: 2em auto;
 }
 
-/* Ads */
+
+/************ Ads **************/
 
 .ad {
     grid-column: span 3;
@@ -178,10 +182,68 @@ main {
     height: 5em;
 }
 
-/* Births */
+/************ Births **************/
 
 .births-container {
-    grid-row: span 5;
+    grid-row: span 4;
     grid-column: span 2;
 }
+
+.births-container > h2 {
+    margin-bottom: 1em;
+}
+
+.birth {
+    display: flex;
+    margin-bottom: 1em;
+    gap: 10px;
+}
+
+.birth > p {
+    padding: 0;
+    margin: 0; 
+}
+
+
+.birth a {
+    color: black;
+    text-decoration: none;
+}
+
+.birth > .date {
+    font-style: italic;
+}
+
+/************ Births **************/
+
+.deaths-container {
+    grid-row: span 4;
+    grid-column: span 2;
+}
+
+.deaths-container > h2 {
+    margin-bottom: 1em;
+}
+
+.death {
+    display: flex;
+    margin-bottom: 1em;
+    gap: 10px;
+}
+
+.death > p {
+    padding: 0;
+    margin: 0; 
+}
+
+
+.death a {
+    color: black;
+    text-decoration: none;
+}
+
+.death > .date {
+    font-style: italic;
+}
+
 

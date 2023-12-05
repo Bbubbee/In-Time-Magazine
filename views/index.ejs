@@ -62,21 +62,39 @@
 						<div class="event births-container">
 							<h2>Important births:</h2>
 							
-							<!-- Iterate thought all births -->
 							<% for (var x = 0; x < births.length; x++) { %>
-								<p>
-									<%= births[x].year %>
-								</p>
-								<p>
-									<a href=<%=births.link%>>
-										<%= births[x].name %>
-									</a>
-								</p>
+								<div class="birth">
+									<p class="date"> <%= births[x].year %> </p>
+									<p class="title">
+										<a href=<%=births[x].link%>> 
+											<%= births[x].name %> 
+										</a>
+									</p>
+								</div>
 							<% } %>
 						</div>
-					<% } %>
+					<% } %> <!-- End of important births-->
+
+					<% if ((i == 22) && (locals.deaths)) { %>
+						<div class="event deaths-container">
+							<h>Important Deaths:</h2>
+							
+							<% for (var x = 0; x < deaths.length; x++) { %>
+								<div class="death">
+									<p class="date"> <%= deaths[x].year %> </p>
+									<p class="title">
+										<a href=<%=deaths[x].link%>> 
+											<%= deaths[x].name %> 
+										</a>
+									</p>
+								</div>
+							<% } %>
+						</div>
+					<% } %> <!-- End of important births-->
+
 
 					<!-- Show important deaths -->
+					
 
 
 					<!-- Special event -->
