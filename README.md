@@ -80,7 +80,7 @@ This website shows significant events that have occured on a given day over the 
 ### Built With
 
 
-![JQuery][JQuery.com]][JQuery-url]
+![JQuery][JQuery.com]
 
 
 
