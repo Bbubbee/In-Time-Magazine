@@ -121,10 +121,7 @@ Download the project and open it in Visual Studio Code.
 
 <!-- USAGE EXAMPLES -->
 ## Usage
-
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
-
-_For more examples, please refer to the [Documentation](https://example.com)_
+<img src="./public/images/samples/logo.png" alt="sample images">
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -147,8 +144,6 @@ Don't forget to give the project a star! Thanks again!
 
 <!-- CONTACT -->
 ## Contact
-
-Your Name - [@your_twitter](https://twitter.com/your_username) - email@example.com
 
 Project Link: [https://github.com/Bbubbee/In-Time-Magazine](https://github.com/Bbubbee/In-Time-Magazine)
 
