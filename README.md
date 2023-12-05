@@ -150,7 +150,7 @@ Don't forget to give the project a star! Thanks again!
 
 Your Name - [@your_twitter](https://twitter.com/your_username) - email@example.com
 
-Project Link: [https://github.com/your_username/repo_name](https://github.com/your_username/repo_name)
+Project Link: [https://github.com/Bbubbee/In-Time-Magazine](https://github.com/Bbubbee/In-Time-Magazine)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -159,10 +159,7 @@ Project Link: [https://github.com/your_username/repo_name](https://github.com/yo
 <!-- ACKNOWLEDGMENTS -->
 ## Acknowledgments
 
-Use this space to list resources you find helpful and would like to give credit to. I've included a few of my favorites to kick things off!
-
-API:
-* [Wikipedia, On this Day](https://byabbe.se/on-this-day/#/default/get__month___day__events_json)
+* API - [Wikipedia, On this Day](https://byabbe.se/on-this-day/#/default/get__month___day__events_json)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
